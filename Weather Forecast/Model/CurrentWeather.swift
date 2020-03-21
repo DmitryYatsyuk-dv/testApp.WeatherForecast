@@ -107,16 +107,6 @@ class CurrentWeather {
         return _visibility
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func getCurrentWeather(completion: @escaping (_ success: Bool) -> Void) {
         
         let locationURL = "https://api.weatherbit.io/v2.0/current?city=Moscow,RU&key=b342eeba887043fc961e0549b91d3038"
