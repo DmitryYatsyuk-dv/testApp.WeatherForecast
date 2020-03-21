@@ -36,6 +36,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Hhb-1g-9is" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Je5-Tw-cHk"/>
                     <constraint firstAttribute="trailing" secondItem="GbS-kx-05R" secondAttribute="trailing" constant="15" id="aGh-6e-52U"/>
@@ -47,7 +48,9 @@
                     <constraint firstItem="F15-a6-woH" firstAttribute="leading" secondItem="Hhb-1g-9is" secondAttribute="trailing" constant="8" id="xvD-WC-blq"/>
                     <constraint firstItem="GbS-kx-05R" firstAttribute="leading" secondItem="F15-a6-woH" secondAttribute="trailing" constant="8" id="yTK-0s-Aa7"/>
                 </constraints>
+                <viewLayoutGuide key="safeArea" id="m6D-Oa-vpm"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dayOfTheWeekLabel" destination="Hhb-1g-9is" id="SfZ-mD-HvV"/>

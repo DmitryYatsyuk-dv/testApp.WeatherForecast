@@ -72,8 +72,8 @@ class WeatherView: UIView {
     
     private func setupInfocollectionView() {
         
-        hourlyCollectionView.register(UINib(nibName: "InfoCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "Cell")
-        hourlyCollectionView.dataSource = self
+        infoCollectionView.register(UINib(nibName: "InfoCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "Cell")
+        infoCollectionView.dataSource = self
     }
     
     func refreshData() {
