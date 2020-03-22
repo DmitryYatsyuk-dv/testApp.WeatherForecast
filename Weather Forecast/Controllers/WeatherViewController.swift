@@ -46,7 +46,7 @@ class WeatherViewController: UIViewController {
         weatherView.currentWeather.getCurrentWeather(location: weatherLocation) { (success) in
             weatherView.refreshData()
         }
-        
+         
     }
     
     private func getWeeklyWeather(weatherView: WeatherView) {

@@ -92,14 +92,14 @@ class WeatherView: UIView {
     
     private func setupWeatherInfo() {
         
-        let sunriseInfo = WeatherInfo(infoText: currentWeather.sunrise, nameText: nil, image: getWeatherIconFor("sunrise"))
-        let sunsetInfo = WeatherInfo(infoText: currentWeather.sunset, nameText: nil, image: getWeatherIconFor("sunset"))
         let windInfo = WeatherInfo(infoText: String(format: "%.1f m/sec", currentWeather.windSpeed), nameText: nil, image: getWeatherIconFor("wind"))
         let humidityInfo = WeatherInfo(infoText: String(format: "%.0f ", currentWeather.humidity), nameText: nil, image: getWeatherIconFor("humidity"))
-        let feelsLikeInfo = WeatherInfo(infoText: String(format: "%.1f˚С", currentWeather.feelsLike), nameText: nil, image: getWeatherIconFor("feelslike"))
-        let uvInfo = WeatherInfo(infoText: String(format: "%.1f", currentWeather.uv), nameText: "UV Index", image: nil)
         let pressureInfo = WeatherInfo(infoText: String(format: "%.0f mb", currentWeather.pressure), nameText: nil, image: getWeatherIconFor("pressure"))
         let visibilityInfo = WeatherInfo(infoText: String(format: "%.0f km", currentWeather.visibility), nameText: nil, image: getWeatherIconFor("visibility"))
+        let feelsLikeInfo = WeatherInfo(infoText: String(format: "%.1f˚С", currentWeather.feelsLike), nameText: nil, image: getWeatherIconFor("feelslike"))
+        let uvInfo = WeatherInfo(infoText: String(format: "%.1f", currentWeather.uv), nameText: "UV Index", image: nil)
+        let sunriseInfo = WeatherInfo(infoText: currentWeather.sunrise, nameText: nil, image: getWeatherIconFor("sunrise"))
+        let sunsetInfo = WeatherInfo(infoText: currentWeather.sunset, nameText: nil, image: getWeatherIconFor("sunset"))
         
         weatherInfoData = [windInfo,humidityInfo, pressureInfo,
                            visibilityInfo, feelsLikeInfo, uvInfo,
