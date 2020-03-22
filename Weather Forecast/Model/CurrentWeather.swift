@@ -107,11 +107,17 @@ class CurrentWeather {
         return _visibility
     }
     
-    func getCurrentWeather(completion: @escaping (_ success: Bool) -> Void) {
+    func getCurrentWeather(location: WeatherLocation, completion: @escaping (_ success: Bool) -> Void) {
         
-        let locationURL = "https://api.weatherbit.io/v2.0/current?city=Moscow,RU&key=b342eeba887043fc961e0549b91d3038"
+        var locationAPIURL: String!
         
-    AF.request(locationURL).responseJSON { (response) in
+        if !location.isCurrentLocation {
+            locationAPIURL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,%@&key=b342eeba887043fc961e0549b91d3038", location.city, location.countryCode)
+        } else {
+            locationAPIURL = currentLocationURL
+        }
+        
+    AF.request(locationAPIURL).responseJSON { (response) in
             
             guard let statusCode = response.response?.statusCode else { return }
             print("statusCode: ", statusCode)

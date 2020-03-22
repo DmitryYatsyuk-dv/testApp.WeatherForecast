@@ -47,9 +47,16 @@ class HourlyForecast {
     }
     
     
-    class func downloadHourlyWeatherForecast(completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
+    class func downloadHourlyWeatherForecast(location: WeatherLocation, completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
         
-        let hourlyForecastUrl = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Moscow,RU&hours=24&key=b342eeba887043fc961e0549b91d3038"
+        var hourlyForecastUrl: String!
+        
+        if !location.isCurrentLocation {
+            hourlyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,%@&hours=24&key=b342eeba887043fc961e0549b91d3038",
+                                    location.city, location.countryCode)
+        } else {
+            hourlyForecastUrl = currentLocationHourlyForecastURL
+        }
         
         AF.request(hourlyForecastUrl).responseJSON { (response) in
             

@@ -15,9 +15,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherScrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
 
-    
-    
-    
+    var weatherLocation: WeatherLocation!
     
     //MARK: ViewLifecycle
     override func viewDidLoad() {
@@ -31,8 +29,9 @@ class WeatherViewController: UIViewController {
         weatherView.frame = CGRect(x: 0, y: 0,
                                    width: weatherScrollView.bounds.width,
                                    height: weatherScrollView.bounds.height)
-        
         weatherScrollView.addSubview(weatherView)
+        
+        weatherLocation = WeatherLocation(city: "Moscow", country: "Russian Federation", countryCode: "RU", isCurrentLocation: false)
         
         getCurrentWeather(weatherView: weatherView)
         getWeeklyWeather(weatherView: weatherView)
@@ -44,7 +43,7 @@ class WeatherViewController: UIViewController {
     private func getCurrentWeather(weatherView: WeatherView) {
         
         weatherView.currentWeather = CurrentWeather()
-        weatherView.currentWeather.getCurrentWeather { (success) in
+        weatherView.currentWeather.getCurrentWeather(location: weatherLocation) { (success) in
             weatherView.refreshData()
         }
         
@@ -52,7 +51,7 @@ class WeatherViewController: UIViewController {
     
     private func getWeeklyWeather(weatherView: WeatherView) {
         
-        WeeklyWeatherForecast.downloadWeeklyWeatherForecast { (weatherForecast) in
+        WeeklyWeatherForecast.downloadWeeklyWeatherForecast(location: weatherLocation) { (weatherForecast) in
             weatherView.weeklyWeatherForecastData = weatherForecast
             weatherView.tableView.reloadData()
         }
@@ -60,7 +59,7 @@ class WeatherViewController: UIViewController {
     
     private func getHourlyWeather(weatherView: WeatherView) {
         
-        HourlyForecast.downloadHourlyWeatherForecast { (weatherForecast) in
+        HourlyForecast.downloadHourlyWeatherForecast(location: weatherLocation) { (weatherForecast) in
             weatherView.dailyWeatherForecastData = weatherForecast
             weatherView.hourlyCollectionView.reloadData()
         }

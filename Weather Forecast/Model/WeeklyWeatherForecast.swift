@@ -45,9 +45,16 @@ class WeeklyWeatherForecast {
         self._weatherIcon = json["weather"]["icon"].stringValue
     }
     
-    class func downloadWeeklyWeatherForecast(completion: @escaping (_ weatherForecast: [WeeklyWeatherForecast]) -> Void) {
+    class func downloadWeeklyWeatherForecast(location: WeatherLocation,completion: @escaping (_ weatherForecast: [WeeklyWeatherForecast]) -> Void) {
         
-        let weeklyForecastUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=Moscow,RU&days=7&key=b342eeba887043fc961e0549b91d3038"
+        var weeklyForecastUrl: String!
+        
+        if !location.isCurrentLocation {
+            weeklyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,%@&days=7&key=b342eeba887043fc961e0549b91d3038",
+                                    location.city, location.countryCode)
+        } else {
+            weeklyForecastUrl = currentLocationWeeklyForecastURL
+        }
         
         AF.request(weeklyForecastUrl).responseJSON { (response) in
             
