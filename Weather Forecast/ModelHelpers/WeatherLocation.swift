@@ -16,4 +16,3 @@ struct WeatherLocation {
     var isCurrentLocation: Bool!
 }
 
-

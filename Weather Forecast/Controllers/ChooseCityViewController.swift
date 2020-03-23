@@ -20,11 +20,28 @@ class ChooseCityViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     
     
-    
+    //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.tableFooterView = UIView()
+        
+        setupSearchController()
+        tableView.tableHeaderView = searchController.searchBar
+        
         loadLocationsFromCSV()
+    }
+    
+    private func setupSearchController() {
+        
+        searchController.searchBar.placeholder = "Enter city or country name"
+//        searchController.searchResultsUpdater = false
+        searchController.obscuresBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.backgroundImage = UIImage()
         
     }
     
@@ -40,7 +57,6 @@ class ChooseCityViewController: UIViewController {
     private func parseCSVat(url: URL) {
         
         do {
-            
             let data = try Data(contentsOf: url)
             let dataEncoded = String(data: data, encoding: .utf8)
             
@@ -51,7 +67,7 @@ class ChooseCityViewController: UIViewController {
                 for line in dataArray {
                     
                     if line.count > 2 && i != 0 {
-                        
+                        createLocation(line: line)
                     }
                     i += 1
                 }
@@ -60,7 +76,32 @@ class ChooseCityViewController: UIViewController {
         } catch {
             print("Error reading CSV file, ", error.localizedDescription)
         }
-        
     }
     
+    private func createLocation(line: [String]) {
+        
+        allLocations.append(WeatherLocation(city: line[1], country: line[4], countryCode: line[3], isCurrentLocation: false))
+    }
+    
+}
+
+extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return filteredLocations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Save location
+        
+    }
 }
