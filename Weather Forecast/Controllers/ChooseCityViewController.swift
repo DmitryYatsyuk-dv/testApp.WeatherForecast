@@ -19,6 +19,9 @@ class ChooseCityViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    let userDefaults = UserDefaults.standard
+    var savedLocations: [WeatherLocation]?
+    
     
     //MARK: View life cycle
     override func viewDidLoad() {
@@ -30,18 +33,22 @@ class ChooseCityViewController: UIViewController {
         tableView.tableHeaderView = searchController.searchBar
         
         loadLocationsFromCSV()
+        loadFromUserDefaults()
     }
     
     private func setupSearchController() {
         
         searchController.searchBar.placeholder = "Enter city or country name"
-//        searchController.searchResultsUpdater = false
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
         
+        searchController.searchBar.searchTextField.textColor = .white
+        searchController.searchBar.searchTextField.font = .boldSystemFont(ofSize: 18)
         searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchController.searchBar.sizeToFit()
         searchController.searchBar.backgroundImage = UIImage()
+        
         
     }
     
@@ -81,7 +88,51 @@ class ChooseCityViewController: UIViewController {
     private func createLocation(line: [String]) {
         
         allLocations.append(WeatherLocation(city: line[1], country: line[4], countryCode: line[3], isCurrentLocation: false))
+        
     }
+    
+    //MARK: UserDefaults
+    private func saveToUserDefaults(location: WeatherLocation) {
+        
+        if savedLocations != nil {
+            
+            if !savedLocations!.contains(location) {
+                savedLocations!.append(location)
+            }
+        } else {
+            savedLocations = [location]
+        }
+        userDefaults.set( try? PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
+        userDefaults.synchronize()
+    }
+    
+    private func loadFromUserDefaults() {
+        
+        if let data = userDefaults.value(forKey: "Locations") as? Data {
+            savedLocations = try? PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
+            
+            print(savedLocations?.first?.country!)
+        }
+    }
+    
+}
+
+extension ChooseCityViewController: UISearchResultsUpdating {
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        
+        filteredLocations = allLocations.filter({ (location) -> Bool in
+            
+            return location.city.lowercased().contains(searchText.lowercased()) || location.country.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    
     
 }
 
@@ -96,12 +147,19 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     
+        let location = filteredLocations[indexPath.row]
+        cell.textLabel?.text = location.city
+        cell.detailTextLabel?.text = location.country
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Save location
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        saveToUserDefaults(location: filteredLocations[indexPath.row])
+        
+         
     }
 }
