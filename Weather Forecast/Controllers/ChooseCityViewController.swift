@@ -8,8 +8,13 @@
 
 import UIKit
 
-class ChooseCityViewController: UIViewController {
+protocol ChooseCityViewControllerDelegate {
+    
+    func didAdd(newLocation: WeatherLocation)
+}
 
+class ChooseCityViewController: UIViewController {
+    
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,9 +26,17 @@ class ChooseCityViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
     var savedLocations: [WeatherLocation]?
+    var delegate: ChooseCityViewControllerDelegate?
+    
     
     
     //MARK: View life cycle
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadFromUserDefaults()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,24 +45,33 @@ class ChooseCityViewController: UIViewController {
         setupSearchController()
         tableView.tableHeaderView = searchController.searchBar
         
+        setupTapGesture()
         loadLocationsFromCSV()
-        loadFromUserDefaults()
     }
     
     private func setupSearchController() {
         
         searchController.searchBar.placeholder = "Enter city or country name"
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
         
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchController.searchBar.searchTextField.textColor = .white
         searchController.searchBar.searchTextField.font = .boldSystemFont(ofSize: 18)
-        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchController.searchBar.sizeToFit()
         searchController.searchBar.backgroundImage = UIImage()
+    }
+    
+    private func setupTapGesture() {
         
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
+        self.tableView.backgroundView = UIView()
+        self.tableView.backgroundView?.addGestureRecognizer(tap)
+    }
+    
+    @objc func tableTapped() {
+        dissmisView()
     }
     
     //MARK: Get Locations
@@ -102,7 +124,7 @@ class ChooseCityViewController: UIViewController {
         } else {
             savedLocations = [location]
         }
-        userDefaults.set( try? PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
+        userDefaults.set( try?  PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
         userDefaults.synchronize()
     }
     
@@ -111,7 +133,16 @@ class ChooseCityViewController: UIViewController {
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
             
-            print(savedLocations?.first?.country!)
+        }
+    }
+    
+    private func dissmisView() {
+        if searchController.isActive {
+            searchController.dismiss(animated: true) {
+                self.dismiss(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true)
         }
     }
     
@@ -146,7 +177,7 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    
+        
         let location = filteredLocations[indexPath.row]
         cell.textLabel?.text = location.city
         cell.detailTextLabel?.text = location.country
@@ -160,6 +191,8 @@ extension ChooseCityViewController: UITableViewDelegate, UITableViewDataSource {
         
         saveToUserDefaults(location: filteredLocations[indexPath.row])
         
-         
+        delegate?.didAdd(newLocation: filteredLocations[indexPath.row])
+        
+        dissmisView()
     }
 }

@@ -85,7 +85,7 @@
                                         <color key="titleColor" red="0.27065883957961023" green="0.42902060341733983" blue="0.62462325507614214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
-                                        <segue destination="f5l-Jy-1xU" kind="show" id="Ft0-1v-xIy"/>
+                                        <segue destination="f5l-Jy-1xU" kind="show" identifier="chooseLocationSegue" id="Ft0-1v-xIy"/>
                                     </connections>
                                 </button>
                             </subviews>
