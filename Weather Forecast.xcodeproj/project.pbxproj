@@ -29,6 +29,8 @@
 		3254E5432425299C00592A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3254E5412425299C00592A43 /* LaunchScreen.storyboard */; };
 		326F492C2427C84800033CFA /* AllLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F492B2427C84800033CFA /* AllLocationsTableViewController.swift */; };
 		326F492E2427C86100033CFA /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F492D2427C86100033CFA /* ChooseCityViewController.swift */; };
+		32D10D4A2430EA1F00B5C6CC /* MainWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D10D492430EA1F00B5C6CC /* MainWeatherTableViewCell.swift */; };
+		32D10D4C2430F00D00B5C6CC /* CityTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D10D4B2430F00D00B5C6CC /* CityTempData.swift */; };
 		32FC534D2426158400C08CFE /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC534C2426158400C08CFE /* WeatherViewController.swift */; };
 		32FC53502426253400C08CFE /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC534E2426253400C08CFE /* WeatherView.swift */; };
 		32FC53512426253400C08CFE /* WeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FC534F2426253400C08CFE /* WeatherView.xib */; };
@@ -61,6 +63,8 @@
 		3254E5442425299C00592A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		326F492B2427C84800033CFA /* AllLocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLocationsTableViewController.swift; sourceTree = "<group>"; };
 		326F492D2427C86100033CFA /* ChooseCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
+		32D10D492430EA1F00B5C6CC /* MainWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherTableViewCell.swift; sourceTree = "<group>"; };
+		32D10D4B2430F00D00B5C6CC /* CityTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTempData.swift; sourceTree = "<group>"; };
 		32FC534C2426158400C08CFE /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		32FC534E2426253400C08CFE /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		32FC534F2426253400C08CFE /* WeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherView.xib; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			children = (
 				320FF43C2426734B00C9CFB0 /* WeatherInfo.swift */,
 				323C8F2B2427883C00EC566B /* WeatherLocation.swift */,
+				32D10D4B2430F00D00B5C6CC /* CityTempData.swift */,
 			);
 			path = ModelHelpers;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				320FF43924266F3100C9CFB0 /* InfoCollectionViewCell.xib */,
 				320FF43E24267BA500C9CFB0 /* WeatherTableViewCell.swift */,
 				320FF43F24267BA500C9CFB0 /* WeatherTableViewCell.xib */,
+				32D10D492430EA1F00B5C6CC /* MainWeatherTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,8 +329,10 @@
 				323ACF2124254928009B7A3B /* GlobalHelpers.swift in Sources */,
 				323ACF23242554EC009B7A3B /* HourlyForecast.swift in Sources */,
 				32FC534D2426158400C08CFE /* WeatherViewController.swift in Sources */,
+				32D10D4C2430F00D00B5C6CC /* CityTempData.swift in Sources */,
 				323ACF1E24252FF1009B7A3B /* CurrentWeather.swift in Sources */,
 				323C8F2E24278A7600EC566B /* apiURLS.swift in Sources */,
+				32D10D4A2430EA1F00B5C6CC /* MainWeatherTableViewCell.swift in Sources */,
 				3254E5392425299B00592A43 /* SceneDelegate.swift in Sources */,
 				326F492E2427C86100033CFA /* ChooseCityViewController.swift in Sources */,
 				320FF43D2426734B00C9CFB0 /* WeatherInfo.swift in Sources */,
