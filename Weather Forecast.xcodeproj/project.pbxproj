@@ -31,6 +31,7 @@
 		326F492E2427C86100033CFA /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326F492D2427C86100033CFA /* ChooseCityViewController.swift */; };
 		32D10D4A2430EA1F00B5C6CC /* MainWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D10D492430EA1F00B5C6CC /* MainWeatherTableViewCell.swift */; };
 		32D10D4C2430F00D00B5C6CC /* CityTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D10D4B2430F00D00B5C6CC /* CityTempData.swift */; };
+		32F9A46D2433C23F0000C3AD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9A46C2433C23F0000C3AD /* LocationService.swift */; };
 		32FC534D2426158400C08CFE /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC534C2426158400C08CFE /* WeatherViewController.swift */; };
 		32FC53502426253400C08CFE /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC534E2426253400C08CFE /* WeatherView.swift */; };
 		32FC53512426253400C08CFE /* WeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FC534F2426253400C08CFE /* WeatherView.xib */; };
@@ -65,6 +66,7 @@
 		326F492D2427C86100033CFA /* ChooseCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
 		32D10D492430EA1F00B5C6CC /* MainWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		32D10D4B2430F00D00B5C6CC /* CityTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTempData.swift; sourceTree = "<group>"; };
+		32F9A46C2433C23F0000C3AD /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		32FC534C2426158400C08CFE /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		32FC534E2426253400C08CFE /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		32FC534F2426253400C08CFE /* WeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherView.xib; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				320FF43C2426734B00C9CFB0 /* WeatherInfo.swift */,
 				323C8F2B2427883C00EC566B /* WeatherLocation.swift */,
 				32D10D4B2430F00D00B5C6CC /* CityTempData.swift */,
+				32F9A46C2433C23F0000C3AD /* LocationService.swift */,
 			);
 			path = ModelHelpers;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			files = (
 				3254E5372425299B00592A43 /* AppDelegate.swift in Sources */,
 				323C8F2C2427883C00EC566B /* WeatherLocation.swift in Sources */,
+				32F9A46D2433C23F0000C3AD /* LocationService.swift in Sources */,
 				320FF43124263F5300C9CFB0 /* Extensions.swift in Sources */,
 				323ACF252425733B009B7A3B /* WeeklyWeatherForecast.swift in Sources */,
 				323ACF2124254928009B7A3B /* GlobalHelpers.swift in Sources */,
