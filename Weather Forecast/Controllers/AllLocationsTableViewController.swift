@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol AllLocationsTableViewControllerDelegate {
+    func didChooseLocation(atIndex: Int, shouldRefresh: Bool)
+}
+
 class AllLocationsTableViewController: UITableViewController {
     
     //MARK: Variables
     let userDefaults = UserDefaults.standard
     var savedLocations: [WeatherLocation]?
     var weatherData: [CityTempData]?
+    
+    var delegate: AllLocationsTableViewControllerDelegate?
+    var shouldRefresh = false
     
     //MARK: View lifecycle
     override func viewDidLoad() {
@@ -24,8 +31,8 @@ class AllLocationsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherData?.count ?? 0
         
+        return weatherData?.count ?? 0
     }
     
     
@@ -42,6 +49,10 @@ class AllLocationsTableViewController: UITableViewController {
     //MARK: TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.didChooseLocation(atIndex: indexPath.row, shouldRefresh: shouldRefresh)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -55,8 +66,6 @@ class AllLocationsTableViewController: UITableViewController {
             let locationToDelete = weatherData?[indexPath.row]
             weatherData?.remove(at: indexPath.row)
             
-            print("Delete this \(locationToDelete!.city)")
-
             removeSavedLocation(location: locationToDelete!.city)
             tableView.reloadData()
         }
@@ -78,6 +87,8 @@ class AllLocationsTableViewController: UITableViewController {
     }
     
     private func saveNewLocationToUserDefaults() {
+        
+        shouldRefresh = true
         userDefaults.set(try? PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
         userDefaults.synchronize()
     }
@@ -87,12 +98,12 @@ class AllLocationsTableViewController: UITableViewController {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
-            print("We have:  \(savedLocations?.count) Locations in UserDefaults")
         }
     }
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "chooseLocationSegue" {
             let vc = segue.destination as! ChooseCityViewController
             vc.delegate = self
@@ -103,7 +114,10 @@ class AllLocationsTableViewController: UITableViewController {
 extension AllLocationsTableViewController: ChooseCityViewControllerDelegate {
     
     func didAdd(newLocation: WeatherLocation) {
-        print("We have added new Location", newLocation.country, newLocation.city)
+        
+        shouldRefresh = true
+        weatherData?.append(CityTempData(city: newLocation.city, temp: 0.0))
+        tableView.reloadData()
     }
     
     

@@ -50,7 +50,7 @@ class WeeklyWeatherForecast {
         var weeklyForecastUrl: String!
         
         if !location.isCurrentLocation {
-            weeklyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,%@&days=7&key=b342eeba887043fc961e0549b91d3038",
+            weeklyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,%@&days=7&key=2385fb7ddfba401ca5827ee878911553",
                                     location.city, location.countryCode)
         } else {
             weeklyForecastUrl = currentLocationWeeklyForecastURL

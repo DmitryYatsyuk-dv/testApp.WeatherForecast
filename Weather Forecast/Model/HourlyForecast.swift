@@ -52,7 +52,7 @@ class HourlyForecast {
         var hourlyForecastUrl: String!
         
         if !location.isCurrentLocation {
-            hourlyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,%@&hours=24&key=b342eeba887043fc961e0549b91d3038",
+            hourlyForecastUrl = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,%@&hours=24&key=2385fb7ddfba401ca5827ee878911553",
                                     location.city, location.countryCode)
         } else {
             hourlyForecastUrl = currentLocationHourlyForecastURL
