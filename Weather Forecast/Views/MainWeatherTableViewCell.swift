@@ -12,28 +12,20 @@ class MainWeatherTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-
     }
     
     func generateCell(weatherData: CityTempData) {
         
         cityLabel.text = weatherData.city
         cityLabel.adjustsFontSizeToFitWidth = true
-        countryLabel.text = weatherData.country
-        countryLabel.adjustsFontSizeToFitWidth = true
         tempLabel.text = String(format: "%.0f ºC", weatherData.temp)
         //TODO: make temp format dynamic
-        
     }
 }

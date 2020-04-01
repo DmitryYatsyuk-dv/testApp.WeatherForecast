@@ -70,7 +70,7 @@ class WeeklyWeatherForecast {
                     if var list = dictionary["data"] as? [Dictionary<String, AnyObject>] {
                         
                         list.remove(at: 0) // remove current day
-                        print("Number of days", list.count)
+                        
                         for item in list {
                             let forecast = WeeklyWeatherForecast(weatherDictionary: item)
                             forecastArray.append(forecast)

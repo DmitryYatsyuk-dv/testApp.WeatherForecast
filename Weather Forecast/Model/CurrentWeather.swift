@@ -65,11 +65,11 @@ class CurrentWeather {
         return _currentTemp
     }
     var feelsLike: Double {
-           if _feelsLike == nil {
-               _feelsLike = 0.0
-           }
-           return _feelsLike
-       }
+        if _feelsLike == nil {
+            _feelsLike = 0.0
+        }
+        return _feelsLike
+    }
     var weatherType: String {
         if _weatherType == nil {
             _weatherType = ""
@@ -117,18 +117,18 @@ class CurrentWeather {
             locationAPIURL = currentLocationURL
         }
         
-    AF.request(locationAPIURL).responseJSON { (response) in
+        AF.request(locationAPIURL).responseJSON { (response) in
             
-            guard let statusCode = response.response?.statusCode else { return }
-            print("statusCode: ", statusCode)
+            //            guard let _ = response.response?.statusCode else { return }
+            //            print("statusCode: ", statusCode)
             
             switch response.result {
             case .success(let value):
-//                print(response.result)
-            
+                //                print(response.result)
+                
                 guard let json = try? JSON(data: response.data!) else { return }
-//            print(json["data"])
-            
+                //                print(json["data"])
+                
                 self._city = json["data"][0]["city_name"].stringValue
                 self._date = currentDateFromUnix(unixDate: json["data"][0]["ts"].double)
                 self._weatherType = json["data"][0]["weather"]["description"].stringValue
@@ -146,15 +146,15 @@ class CurrentWeather {
                 
                 completion(true)
                 
-            guard
-                value is [String: Any]
-                else { return }
+                guard
+                    value is [String: Any]
+                    else { return }
                 
             case .failure(let error):
+                self._city = location.city
                 completion(false)
-                print(error)
-            }
-                
+                print("No result found for current location: \(error)")
             }
         }
+    }
 }

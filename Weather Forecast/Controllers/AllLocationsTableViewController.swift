@@ -55,6 +55,8 @@ class AllLocationsTableViewController: UITableViewController {
             let locationToDelete = weatherData?[indexPath.row]
             weatherData?.remove(at: indexPath.row)
             
+            print("Delete this \(locationToDelete!.city)")
+
             removeSavedLocation(location: locationToDelete!.city)
             tableView.reloadData()
         }
@@ -76,7 +78,6 @@ class AllLocationsTableViewController: UITableViewController {
     }
     
     private func saveNewLocationToUserDefaults() {
-        
         userDefaults.set(try? PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
         userDefaults.synchronize()
     }
@@ -86,7 +87,7 @@ class AllLocationsTableViewController: UITableViewController {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
-            print("We have \(savedLocations?.count) Locations in UserDefaults")
+            print("We have:  \(savedLocations?.count) Locations in UserDefaults")
         }
     }
     

@@ -31,11 +31,18 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         locationManagerStart()
+        weatherScrollView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         locationAuthCheck()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        locationManagerStop()
     }
     
     //MARK: Download Weather
@@ -44,6 +51,7 @@ class WeatherViewController: UIViewController {
         loadLocationsFromUserDefaults()
         createWeatherViews()
         addWeatherToScrollView()
+        setPageControllPageNumber()
     }
     
     private func createWeatherViews() {
@@ -78,6 +86,7 @@ class WeatherViewController: UIViewController {
         weatherView.currentWeather = CurrentWeather()
         weatherView.currentWeather.getCurrentWeather(location: location) { (success) in
             weatherView.refreshData()
+            self.generateWeatherList()
         }
          
     }
@@ -116,6 +125,16 @@ class WeatherViewController: UIViewController {
         }
     }
     
+    //MARK: PageControll
+    private func setPageControllPageNumber() {
+        
+        pageControl.numberOfPages = allWeatherViews.count
+    }
+    
+    private func updatePageControlSelectedPage(currentPage: Int) {
+        
+        pageControl.currentPage = currentPage
+    }
     
     //MARK: LocationManager
     private func locationManagerStart() {
@@ -156,6 +175,27 @@ class WeatherViewController: UIViewController {
             locationAuthCheck()
         }
     }
+    
+    private func generateWeatherList() {
+        
+        allWeatherData = []
+        
+        for weatherView in allWeatherViews {
+            
+            allWeatherData.append(CityTempData(city: weatherView.currentWeather.city,
+                                               temp: weatherView.currentWeather.currentTemp))
+            print("City name : \(weatherView.currentWeather.city)")
+        }
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "allLocationSegue" {
+            let vc = segue.destination as! AllLocationsTableViewController
+            vc.weatherData = allWeatherData
+        }
+    }
 }
 
 extension WeatherViewController: CLLocationManagerDelegate {
@@ -165,3 +205,10 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
 }
 
+extension WeatherViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let value = scrollView.contentOffset.x / scrollView.frame.size.width
+        updatePageControlSelectedPage(currentPage: Int(round(value)))
+    }
+}

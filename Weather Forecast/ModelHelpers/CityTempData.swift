@@ -11,6 +11,5 @@ import Foundation
 struct CityTempData {
     
     var city: String!
-    var country: String!
     var temp: Double!
 }

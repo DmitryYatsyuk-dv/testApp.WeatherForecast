@@ -30,7 +30,7 @@
                                     <barButtonItem systemItem="add" id="wvb-mb-FwQ">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="c1e-LQ-tyJ" kind="show" id="Won-8y-Q2e"/>
+                                            <segue destination="c1e-LQ-tyJ" kind="show" identifier="allLocationSegue" id="Won-8y-Q2e"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -65,14 +65,14 @@
         <!--All Locations Table View Controller-->
         <scene sceneID="h2m-9k-f31">
             <objects>
-                <tableViewController id="c1e-LQ-tyJ" customClass="AllLocationsTableViewController" customModule="Weather_Forecast" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wom-mN-Mqo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                <tableViewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="c1e-LQ-tyJ" customClass="AllLocationsTableViewController" customModule="Weather_Forecast" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="Wom-mN-Mqo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="SsJ-Ia-ZY1">
-                            <rect key="frame" x="0.0" y="146" width="414" height="55"/>
+                            <rect key="frame" x="0.0" y="126" width="414" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-yO-PBy">
@@ -82,7 +82,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="21"/>
                                     <state key="normal" title="Add">
-                                        <color key="titleColor" red="0.27065883957961023" green="0.42902060341733983" blue="0.62462325507614214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                     </state>
                                     <connections>
                                         <segue destination="f5l-Jy-1xU" kind="show" identifier="chooseLocationSegue" id="Ft0-1v-xIy"/>
@@ -98,15 +98,15 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="Tsw-eU-aNh" customClass="MainWeatherTableViewCell" customModule="Weather_Forecast" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="Tsw-eU-aNh" customClass="MainWeatherTableViewCell" customModule="Weather_Forecast" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tsw-eU-aNh" id="jyC-2b-fbn">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100FC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnH-aA-bo5">
-                                            <rect key="frame" x="334" y="34" width="60" height="22"/>
+                                            <rect key="frame" x="334" y="24" width="60" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="Z3o-Se-LvB"/>
                                             </constraints>
@@ -114,17 +114,8 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJJ-c8-Kk7">
-                                            <rect key="frame" x="20" y="55" width="306" height="14.333333333333329"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="306" id="cb8-LJ-mZD"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42t-lf-qxS">
-                                            <rect key="frame" x="20" y="34" width="306" height="22"/>
+                                            <rect key="frame" x="20" y="24" width="306" height="22"/>
                                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -134,16 +125,13 @@
                                         <constraint firstItem="42t-lf-qxS" firstAttribute="centerY" secondItem="jyC-2b-fbn" secondAttribute="centerY" id="9Kw-tb-3dL"/>
                                         <constraint firstItem="hnH-aA-bo5" firstAttribute="leading" secondItem="42t-lf-qxS" secondAttribute="trailing" constant="8" id="Fla-pC-ffG"/>
                                         <constraint firstItem="hnH-aA-bo5" firstAttribute="trailing" secondItem="jyC-2b-fbn" secondAttribute="trailingMargin" id="HKV-wW-Ivc"/>
-                                        <constraint firstItem="dJJ-c8-Kk7" firstAttribute="top" secondItem="42t-lf-qxS" secondAttribute="bottom" constant="-1" id="RA1-Nr-1p7"/>
                                         <constraint firstItem="hnH-aA-bo5" firstAttribute="centerY" secondItem="jyC-2b-fbn" secondAttribute="centerY" id="VKB-Hp-mj2"/>
-                                        <constraint firstItem="dJJ-c8-Kk7" firstAttribute="leading" secondItem="jyC-2b-fbn" secondAttribute="leadingMargin" id="db7-tY-QZS"/>
                                         <constraint firstItem="42t-lf-qxS" firstAttribute="leading" secondItem="jyC-2b-fbn" secondAttribute="leadingMargin" id="fCl-Am-6ZP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="cityLabel" destination="42t-lf-qxS" id="1bM-xc-z34"/>
-                                    <outlet property="countryLabel" destination="dJJ-c8-Kk7" id="yPQ-Km-xAI"/>
                                     <outlet property="tempLabel" destination="hnH-aA-bo5" id="ly1-WT-1Nv"/>
                                 </connections>
                             </tableViewCell>
@@ -154,6 +142,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ntc-Bc-nvb"/>
+                    <size key="freeformSize" width="414" height="896"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Op2-zr-cSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
