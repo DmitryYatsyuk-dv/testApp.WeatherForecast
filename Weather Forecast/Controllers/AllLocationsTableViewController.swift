@@ -14,6 +14,10 @@ protocol AllLocationsTableViewControllerDelegate {
 
 class AllLocationsTableViewController: UITableViewController {
     
+    //MARK: IBOutlet
+    @IBOutlet weak var tempSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var footerView: UIView!
+    
     //MARK: Variables
     let userDefaults = UserDefaults.standard
     var savedLocations: [WeatherLocation]?
@@ -26,7 +30,15 @@ class AllLocationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadFromUserDefaults()
+        tableView.tableFooterView = footerView
+        
+        loadLocationsFromUserDefaults()
+        loadTempFormatFromUserDefaults()
+    }
+    
+    //MARK: IBAction
+    @IBAction func tempSegmentTapped(_ sender: UISegmentedControl) {
+        updaitTempFormatInUserDefaults(newValue: sender.selectedSegmentIndex)
     }
     
     // MARK: - Table view data source
@@ -94,10 +106,25 @@ class AllLocationsTableViewController: UITableViewController {
     }
     
     //MARK: UserDefaults
-    private func loadFromUserDefaults() {
+    private func loadLocationsFromUserDefaults() {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {
             savedLocations = try? PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
+        }
+    }
+    
+    private func updaitTempFormatInUserDefaults(newValue: Int) {
+        shouldRefresh = true
+        userDefaults.set(newValue, forKey: "TempFormat")
+        userDefaults.synchronize()
+    }
+    
+    private func loadTempFormatFromUserDefaults() {
+        
+        if let index = userDefaults.value(forKey: "TempFormat") {
+            tempSegmentedControl.selectedSegmentIndex = index as! Int
+        } else {
+            tempSegmentedControl.selectedSegmentIndex = 0
         }
     }
     
