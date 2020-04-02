@@ -40,7 +40,7 @@ class WeeklyWeatherForecast {
         
         let json = JSON(weatherDictionary)
         
-        self._temp = json["temp"].double
+        self._temp = getTempasedOnSettings(celsius: json["temp"].double ?? 0.0)
         self._date = currentDateFromUnix(unixDate: json["ts"].double)
         self._weatherIcon = json["weather"]["icon"].stringValue
     }

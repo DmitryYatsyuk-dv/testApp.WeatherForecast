@@ -97,7 +97,8 @@ class AllLocationsTableViewController: UITableViewController {
             }
         }
     }
-    
+        
+    //MARK: UserDefaults
     private func saveNewLocationToUserDefaults() {
         
         shouldRefresh = true
@@ -105,7 +106,6 @@ class AllLocationsTableViewController: UITableViewController {
         userDefaults.synchronize()
     }
     
-    //MARK: UserDefaults
     private func loadLocationsFromUserDefaults() {
         
         if let data = userDefaults.value(forKey: "Locations") as? Data {

@@ -26,9 +26,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         
         timeLabel.text = weather.date.time()
         weatherIconImageView.image = getWeatherIconFor(weather.weatherIcon)
-        tempLabel.text = "\(weather.temp)"
-        
-        
+        tempLabel.text = String(format: "%.0f%@", weather.temp, returnTempFormatFromUserDefaults())
     }
-
 }

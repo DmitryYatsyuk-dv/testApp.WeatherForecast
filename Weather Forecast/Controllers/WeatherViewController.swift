@@ -60,6 +60,11 @@ class WeatherViewController: UIViewController {
         setPageControllPageNumber()
     }
     
+    private func removeViewsFromScrollView() {
+        
+        
+    }
+    
     private func createWeatherViews() {
         
         for _ in allLocations {
