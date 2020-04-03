@@ -41,6 +41,7 @@ class WeatherViewController: UIViewController {
         if shouldRefresh {
             allLocations = []
             allWeatherViews = []
+            removeViewsFromScrollView()
             locationAuthCheck()
         }
     }
@@ -62,7 +63,9 @@ class WeatherViewController: UIViewController {
     
     private func removeViewsFromScrollView() {
         
-        
+        for view in weatherScrollView.subviews {
+            view.removeFromSuperview()
+        }
     }
     
     private func createWeatherViews() {
@@ -195,7 +198,7 @@ class WeatherViewController: UIViewController {
             
             allWeatherData.append(CityTempData(city: weatherView.currentWeather.city,
                                                temp: weatherView.currentWeather.currentTemp))
-            print("City name : \(weatherView.currentWeather.city)")
+//            print("City name : \(weatherView.currentWeather.city)")
         }
     }
     

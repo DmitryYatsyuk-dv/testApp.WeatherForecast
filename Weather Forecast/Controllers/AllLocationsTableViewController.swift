@@ -31,7 +31,6 @@ class AllLocationsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = footerView
-        
         loadLocationsFromUserDefaults()
         loadTempFormatFromUserDefaults()
     }

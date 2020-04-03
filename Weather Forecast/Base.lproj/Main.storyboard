@@ -38,10 +38,10 @@
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJj-aO-2Ph">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="M8U-jL-65F" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8PG-FH-w9z"/>
                             <constraint firstItem="M8U-jL-65F" firstAttribute="top" secondItem="eJj-aO-2Ph" secondAttribute="bottom" id="ITZ-nm-qAM"/>
@@ -80,7 +80,7 @@
                                     <rect key="frame" x="30" y="12" width="115" height="32"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="115" id="yvn-iD-Yi5"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="XKn-VC-0hf"/>
                                     </constraints>
                                     <segments>
                                         <segment title="°C"/>
@@ -112,6 +112,7 @@
                             <constraints>
                                 <constraint firstItem="k6h-yO-PBy" firstAttribute="centerY" secondItem="SsJ-Ia-ZY1" secondAttribute="centerY" id="5fE-bz-wwl"/>
                                 <constraint firstAttribute="trailing" secondItem="k6h-yO-PBy" secondAttribute="trailing" constant="30" id="6jB-vv-mD0"/>
+                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rwv-RJ-KcG" secondAttribute="trailing" constant="269" id="IlR-oO-M8M"/>
                                 <constraint firstItem="Rwv-RJ-KcG" firstAttribute="centerY" secondItem="SsJ-Ia-ZY1" secondAttribute="centerY" id="OIl-C9-Vdq"/>
                                 <constraint firstItem="Rwv-RJ-KcG" firstAttribute="leading" secondItem="SsJ-Ia-ZY1" secondAttribute="leading" constant="30" id="lIJ-cX-q5I"/>
                                 <constraint firstAttribute="bottom" secondItem="k6h-yO-PBy" secondAttribute="bottom" constant="10" id="tMD-tZ-VIO"/>
@@ -127,9 +128,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100FC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnH-aA-bo5">
                                             <rect key="frame" x="334" y="24" width="60" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="Z3o-Se-LvB"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="19"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -142,6 +140,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="hnH-aA-bo5" firstAttribute="leading" secondItem="jyC-2b-fbn" secondAttribute="leading" constant="334" id="6eT-ap-dlm"/>
                                         <constraint firstItem="42t-lf-qxS" firstAttribute="centerY" secondItem="jyC-2b-fbn" secondAttribute="centerY" id="9Kw-tb-3dL"/>
                                         <constraint firstItem="hnH-aA-bo5" firstAttribute="leading" secondItem="42t-lf-qxS" secondAttribute="trailing" constant="8" id="Fla-pC-ffG"/>
                                         <constraint firstItem="hnH-aA-bo5" firstAttribute="trailing" secondItem="jyC-2b-fbn" secondAttribute="trailingMargin" id="HKV-wW-Ivc"/>
