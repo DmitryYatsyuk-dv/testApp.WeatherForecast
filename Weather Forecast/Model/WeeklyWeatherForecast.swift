@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
 import Alamofire
+import SwiftyJSON
 
 
 class WeeklyWeatherForecast {
